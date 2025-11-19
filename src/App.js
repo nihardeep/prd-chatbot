@@ -5,7 +5,8 @@ export default function PRDChatbot() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: 'Hi! I\'m your PRD Generator assistant. I can help you create comprehensive Product Requirement Documents. What product would you like to create a PRD for?'
+      content:
+        "Hi! I'm your PRD Generator assistant. I can help you create comprehensive Product Requirement Documents. What product would you like to create a PRD for?"
     }
   ]);
   const [input, setInput] = useState('');
@@ -32,7 +33,7 @@ export default function PRDChatbot() {
     }
 
     const userMessage = { role: 'user', content: input };
-    setMessages(prev => [...prev, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setLoading(true);
 
@@ -41,16 +42,17 @@ export default function PRDChatbot() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
+          Authorization: `Bearer ${apiKey}`
         },
         body: JSON.stringify({
           model: 'gpt-4',
           messages: [
             {
               role: 'system',
-              content: 'You are a specialized PRD (Product Requirement Document) generator. Help users create comprehensive PRDs including: executive summary, product overview, objectives, user personas, features, technical requirements, success metrics, timeline, and risks. Ask clarifying questions and provide structured, professional output.'
+              content:
+                'You are a specialized PRD (Product Requirement Document) generator. Help users create comprehensive PRDs including: executive summary, product overview, objectives, user personas, features, technical requirements, success metrics, timeline, and risks. Ask clarifying questions and provide structured, professional output.'
             },
-            ...messages.map(m => ({ role: m.role, content: m.content })),
+            ...messages.map((m) => ({ role: m.role, content: m.content })),
             userMessage
           ],
           temperature: 0.7,
@@ -69,13 +71,16 @@ export default function PRDChatbot() {
         content: data.choices[0].message.content
       };
 
-      setMessages(prev => [...prev, assistantMessage]);
+      setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
       console.error('Error:', error);
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: `Error: ${error.message}. Please check your API key and try again.`
-      }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: `Error: ${error.message}. Please check your API key and try again.`
+        }
+      ]);
     } finally {
       setLoading(false);
     }
@@ -89,7 +94,9 @@ export default function PRDChatbot() {
           <FileText className="w-8 h-8 text-indigo-600" />
           <div>
             <h1 className="text-2xl font-bold text-gray-800">PRD Generator</h1>
-            <p className="text-sm text-gray-600">AI-Powered Product Requirement Documents</p>
+            <p className="text-sm text-gray-600">
+              AI-Powered Product Requirement Documents
+            </p>
           </div>
         </div>
         <button
@@ -114,7 +121,15 @@ export default function PRDChatbot() {
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
           />
           <p className="text-xs text-gray-600 mt-2">
-            Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="text-indigo-600 underline">OpenAI Platform</a>
+            Get your API key from{' '}
+            <a
+              href="https://platform.openai.com/api-keys"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-600 underline"
+            >
+              OpenAI Platform
+            </a>
           </p>
         </div>
       )}
@@ -124,15 +139,22 @@ export default function PRDChatbot() {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={\`flex \${message.role === 'user' ? 'justify-end' : 'justify-start'}\`}
+            className={`flex ${
+              message.role === 'user' ? 'justify-end' : 'justify-start'
+            }`}
           >
             <div
-              className={\`max-w-3xl rounded-lg p-4 \${message.role === 'user' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-800 shadow-md'}\`}
+              className={`max-w-3xl rounded-lg p-4 ${
+                message.role === 'user'
+                  ? 'bg-indigo-600 text-white'
+                  : 'bg-white text-gray-800 shadow-md'
+              }`}
             >
               <div className="whitespace-pre-wrap">{message.content}</div>
             </div>
           </div>
         ))}
+
         {loading && (
           <div className="flex justify-start">
             <div className="bg-white rounded-lg p-4 shadow-md">
@@ -140,6 +162,7 @@ export default function PRDChatbot() {
             </div>
           </div>
         )}
+
         <div ref={messagesEndRef} />
       </div>
 
