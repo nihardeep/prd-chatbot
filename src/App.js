@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Send, Loader2, MapPin, Users, Home, LogOut, Search, MessageCircle } from 'lucide-react';
+import { Send, Loader2, MapPin, Home, Search, MessageCircle } from 'lucide-react';
 
 export default function TravelApp() {
-  const [currentPage, setCurrentPage] = useState('home'); // home or chatbot
+  const [currentPage, setCurrentPage] = useState('home');
   const [searchParams, setSearchParams] = useState({
     destination: '',
     adults: 1,
