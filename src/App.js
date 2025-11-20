@@ -230,8 +230,17 @@ export default function TravelApp() {
                 </div>
 
                 <div className="flex items-end">
-                  <button className="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 font-bold py-3 rounded-lg hover:from-yellow-300 hover:to-orange-300 transition transform hover:scale-105 flex items-center justify-center gap-2">
-                    <Search className="w-5 h-5" /> Search
+                   onClick={() => {
+    if (!searchParams.destination) {
+      alert("Please select a destination");
+      return;
+    }
+    handleDestinationClick(searchParams.destination);
+  }}
+  className="w-full bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 font-bold py-3 rounded-lg hover:from-yellow-300 hover:to-orange-300 transition transform hover:scale-105 flex items-center justify-center gap-2"
+>
+  <Search className="w-5 h-5" />
+  Search
                   </button>
                 </div>
               </div>
