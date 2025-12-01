@@ -13,7 +13,7 @@ async function initializeExtension() {
   try {
     // Load InboxSDK
     if (typeof InboxSDK !== 'undefined') {
-      inboxSDK = InboxSDK.load(2, 'sdk_email-ai-categorizer_123456789');
+      inboxSDK = InboxSDK.load(2, 'sdk_EmailCategory_9b980e3e61');
       console.log('Email AI Categorizer: InboxSDK loaded');
 
       // Set up email listeners
