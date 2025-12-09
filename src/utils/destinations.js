@@ -24,3 +24,4 @@ const getDestinationImage = (destination) => {
 };
 
 export { getDestinationDisplayName, getDestinationImage };
+

@@ -43,3 +43,4 @@ export default function PriceRangeSlider({ value, onChange, min = 0, max = 20394
   );
 }
 
+

@@ -26,3 +26,4 @@ export default function SearchLoadingDialog({ open }) {
     </Dialog>
   );
 }
+
