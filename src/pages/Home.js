@@ -116,7 +116,7 @@ export default function Home() {
       setIsLoading(true);
       console.log("Sending chat message to n8n:", payload);
 
-      const response = await fetch("https://ndsharma.app.n8n.cloud/webhook/travel-search", {
+      const response = await fetch("https://nihardeep.app.n8n.cloud/webhook/travel-search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
